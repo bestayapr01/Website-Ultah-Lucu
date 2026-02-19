@@ -165,30 +165,27 @@
         /* RESPONSIVE DI HP: SETENGAH ATAS SURAT, SETENGAH BAWAH FOTO*/
         /* ========================================================= */
         @media (max-width: 768px) { 
-            /* Ubah struktur modal agar menempel di atas */
             .letter-modal { align-items: flex-start; padding-top: 3vh; }
             
             /* SURAT: Dikunci tingginya maksimal 45% layar */
             .letter-content { 
                 width: 90% !important; 
-                height: 45vh !important; /* Tinggi fix setengah layar */
-                max-height: 45vh !important;
-                padding: 15px; 
-                overflow-y: auto; /* Bisa di-scroll di dalam kotaknya */
-                transform: translateY(-50px) scale(0.9); /* Reset animasi */
+                height: 45vh !important; max-height: 45vh !important;
+                padding: 15px; overflow-y: auto;
+                transform: translateY(-50px) scale(0.9);
             }
             .letter-modal.active .letter-content { transform: translateY(0) scale(1); }
-            
             .letter-content h2 { font-size: 2rem; margin-bottom: 5px; }
             .letter-content p { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; text-align: left; }
             .close-btn { top: 5px; right: 15px; font-size: 1.8rem; }
 
-            /* FOTO-FOTO: Dikunci posisinya di setengah layar bawah (top > 50%) */
-            .photo-1 { width: 90px; top: 52%; left: 3%; transform: rotate(-10deg); } 
-            .photo-2 { width: 95px; top: 54%; right: 3%; transform: rotate(12deg); } 
-            .photo-3 { width: 85px; top: 74%; left: 6%; transform: rotate(-6deg); } 
-            .photo-4 { width: 90px; top: 72%; right: 6%; transform: rotate(8deg); } 
-            .photo-5 { width: 100px; top: 64%; left: 35%; transform: rotate(-2deg); } /* Posisinya di tengah bawah */
+            /* FOTO-FOTO: DIPERBESAR & DITURUNKAN POISISINYA */
+            /* Top > 60% agar lebih turun, width ditambah 15-20px agar lebih besar */
+            .photo-1 { width: 110px; top: 60%; left: 3%; transform: rotate(-10deg); } 
+            .photo-2 { width: 115px; top: 62%; right: 3%; transform: rotate(12deg); } 
+            .photo-3 { width: 105px; top: 82%; left: 5%; transform: rotate(-6deg); } 
+            .photo-4 { width: 110px; top: 80%; right: 5%; transform: rotate(8deg); } 
+            .photo-5 { width: 120px; top: 70%; left: 50%; margin-left: -60px; transform: rotate(-2deg); } 
 
             .choice-title { font-size: 3rem; } .choices-container { gap: 20px; } .choice-glow { width: 110px; height: 110px; }
         }
@@ -199,7 +196,8 @@
             .transition-img { width: 150px; height: 150px; } .transition-text { font-size: 0.95rem; }
             
             .letter-content { height: 45vh !important; max-height: 45vh !important; }
-            .photo-1 { width: 80px; } .photo-2 { width: 85px; } .photo-3 { width: 75px; } .photo-4 { width: 80px; } .photo-5 { width: 90px; }
+            /* Foto di HP kecil juga ikut diperbesar sedikit */
+            .photo-1 { width: 95px; } .photo-2 { width: 100px; } .photo-3 { width: 90px; } .photo-4 { width: 95px; } .photo-5 { width: 105px; margin-left: -52px;}
         }
     </style>
 </head>
