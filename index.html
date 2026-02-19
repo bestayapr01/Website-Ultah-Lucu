@@ -17,7 +17,7 @@
             overflow: hidden;
         }
 
-        /* Tombol Outline Umum (untuk Clue, Lanjut, Kembali) */
+        /* Tombol Outline Umum */
         .outline-btn {
             background: transparent; border: 2px solid #ffffff; color: #ffffff;
             padding: 6px 20px; border-radius: 25px; font-size: 0.85rem;
@@ -26,10 +26,8 @@
         }
         .outline-btn:hover { background: #ffffff; color: #d11a2a; }
 
-        /* Tombol Kembali di pojok kiri atas layar Amplop/Bunga */
         .back-btn { position: absolute; top: 20px; left: 20px; font-size: 0.85rem; padding: 6px 15px; z-index: 50; }
         
-        /* Tombol Musik di Pojok Kanan Atas */
         #music-toggle {
             position: fixed; top: 20px; right: 20px;
             background: rgba(255,255,255,0.2); border: 2px solid #fff; color: white;
@@ -130,7 +128,7 @@
         .letter-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
         .letter-modal.active { opacity: 1; pointer-events: all; }
         
-        /* Default/Desktop Ukuran Surat */
+        /* Setingan Surat untuk Laptop/Desktop (Default) */
         .letter-content { 
             background: #fff; width: 90%; max-width: 600px; max-height: 85vh; 
             border-radius: 10px; padding: 40px; position: relative; 
@@ -143,8 +141,8 @@
         .letter-content h2 { font-family: 'Great Vibes', cursive; color: #d11a2a; font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; }
         .letter-content p { color: #333; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
 
-        /* Gaya untuk 5 Foto Melayang (Default / Layar Komputer) */
-        .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s; }
+        /* Gaya untuk 5 Foto Melayang (Laptop/Desktop) */
+        .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s; border: 5px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .letter-modal.active .floating-photo { opacity: 1; }
         .photo-1 { top: 10%; left: 5%; width: 250px; transform: rotate(-15deg) scale(0.8); }
         .letter-modal.active .photo-1 { transform: rotate(-15deg) scale(1); }
@@ -165,37 +163,42 @@
         @keyframes sway { 0%, 100% { transform: rotate(-1.5deg) translateY(0); } 50% { transform: rotate(1.5deg) translateY(-5px); } }
 
         /* ========================================================= */
-        /* RESPONSIVE DI HP - PERBAIKAN UKURAN KERTAS 40% & FOTO */
+        /* RESPONSIVE DI HP (SURAT SETENGAH ATAS, FOTO SETENGAH BAWAH) */
         /* ========================================================= */
         @media (max-width: 768px) { 
-            /* 1. Kertas Surat Diperkecil Maksimal (40%) */
+            /* Ubah layout container modal agar surat berada di atas */
+            .letter-modal { align-items: flex-start; padding-top: 5vh; }
+            
+            /* Surat hanya ambil setengah layar atas (45% layar) */
             .letter-content { 
-                width: 40% !important; /* Lebar dikecilkan ekstrem sesuai permintaan */
-                padding: 15px 12px; /* Padding dikurangi agar teks punya ruang */
-                max-height: 80vh; 
+                width: 90% !important; /* Dibuat 90% agar tulisan tetap lebar dan muat */
+                max-height: 45vh !important; /* Dibatasi tegas tingginya hanya setengah layar atas */
+                padding: 20px 15px; 
+                transform: scale(0.7) translateY(-50px);
             }
-            .letter-content h2 { font-size: 1.5rem; margin-bottom: 8px; }
-            .letter-content p { font-size: 0.65rem; margin-bottom: 10px; line-height: 1.4; } /* Teks ikut dikecilkan agar muat di 40% */
-            .close-btn { top: 5px; right: 10px; font-size: 1.2rem; }
+            .letter-modal.active .letter-content { transform: scale(1) translateY(0); }
+            
+            .letter-content h2 { font-size: 2rem; margin-bottom: 5px; }
+            .letter-content p { font-size: 0.8rem; margin-bottom: 10px; line-height: 1.5; }
+            .close-btn { top: 5px; right: 10px; font-size: 1.5rem; }
 
-            /* 2. Menata ulang ke-5 foto di ruang kosong (karena suratnya kecil banget) */
-            .photo-1 { width: 95px; top: 15%; left: 5%; transform: rotate(-15deg); } 
-            .photo-2 { width: 100px; bottom: 15%; right: 5%; transform: rotate(10deg); } 
-            .photo-3 { width: 90px; bottom: 25%; left: 3%; transform: rotate(-8deg); } 
-            .photo-4 { width: 95px; top: 25%; right: 3%; transform: rotate(12deg); } 
-            .photo-5 { width: 85px; top: 50%; right: 8%; left: auto; transform: rotate(-5deg); } 
+            /* FOTO-FOTO DITUMPUK DI SETENGAH LAYAR BAWAH (top di atas 50%) */
+            .photo-1 { width: 100px; top: 53%; left: 5%; transform: rotate(-12deg); } 
+            .photo-2 { width: 110px; top: 55%; right: 5%; transform: rotate(15deg); } 
+            .photo-3 { width: 95px; top: 75%; left: 8%; transform: rotate(-8deg); } 
+            .photo-4 { width: 105px; top: 72%; right: 8%; transform: rotate(10deg); } 
+            .photo-5 { width: 85px; top: 65%; left: 38%; transform: rotate(-2deg); } /* Di tengah bawah */
 
             .choice-title { font-size: 3rem; } .choices-container { gap: 20px; } .choice-glow { width: 110px; height: 110px; }
         }
 
-        /* Khusus HP dengan layar sangat kecil (seperti iPhone SE) */
+        /* Khusus HP sangat kecil */
         @media (max-width: 360px) {
             .num-btn { width: 45px; height: 45px; font-size: 1.1rem; } .numpad { gap: 8px; } .lock-title { font-size: 0.75rem; }
             .transition-img { width: 150px; height: 150px; } .transition-text { font-size: 0.95rem; }
             
-            /* Tetap pertahankan 40% tapi kurangi foto sedikit ukurannya */
-            .letter-content { width: 45% !important; padding: 12px 8px; }
-            .photo-1 { width: 75px; } .photo-2 { width: 80px; } .photo-3 { width: 70px; } .photo-4 { width: 75px; } .photo-5 { width: 65px; }
+            .letter-content { max-height: 48vh !important; }
+            .photo-1 { width: 85px; } .photo-2 { width: 90px; } .photo-3 { width: 80px; } .photo-4 { width: 85px; } .photo-5 { width: 75px; }
         }
     </style>
 </head>
@@ -317,12 +320,9 @@
             <span class="close-btn" id="close-btn">&times;</span>
             <h2>Happy Birthday!</h2>
             <p>Selamat ulang tahun Bebee 🎉</p>
-            <p>Padahal baru kemarin kamu masih kecik sekarang udah nambah aja umur nyaa huhuhuu (walaupun masih sama lemineral mini si). Keren banget kamu sayanggg bisa sampe dititik ini
-                kamu ngelewatin itu semua dan thank you for sticking it out, whether for me or for yourself. I'm so proud of you Bebee🤍</p>
-            <p>Yang lalu biarlah berlalu kamu masih punya perjalanan baru sayangg. Semoga di umur kamu sekarang dan mulai dari ini semakin banyak hal hal baik yang dateng ke kamu,
-               kehidupan yang baik, dan apapun itu yang kamu harapin semoga kecapai semua ya bebee aminnnn seriusss</p>
-            <p>Jan pernah lelah buat ngejar mimpi kamu. Aku selalu ada di sini mendukungmu sayangggkuuu
-             cintakuuuu duniakuu semestaa sealam jagad raya yang paling lucu imup dan menggemaskannnn.</p>
+            <p>Padahal baru kemarin kamu masih kecik sekarang udah nambah aja umur nyaa huhuhuu (walaupun masih sama lemineral mini si). Keren banget kamu sayanggg bisa sampe dititik ini kamu ngelewatin itu semua dan thank you for sticking it out, whether for me or for yourself. I'm so proud of you Bebee🤍</p>
+            <p>Yang lalu biarlah berlalu kamu masih punya perjalanan baru sayangg. Semoga di umur kamu sekarang dan mulai dari ini semakin banyak hal hal baik yang dateng ke kamu, kehidupan yang baik, dan apapun itu yang kamu harapin semoga kecapai semua ya bebee aminnnn seriusss</p>
+            <p>Jan pernah lelah buat ngejar mimpi kamu. Aku selalu ada di sini mendukungmu sayangggkuuu cintakuuuu duniakuu semestaa sealam jagad raya yang paling lucu imup dan menggemaskannnn.</p>
             <p>I Love You Moree 🤍</p>
             <p><em><br>Your Bebee</em></p>
         </div>
@@ -332,10 +332,9 @@
         // --- LOGIKA MUSIK & VIDEO ---
         const bgMusic = document.getElementById('bg-music');
         const musicToggle = document.getElementById('music-toggle');
-        const flowerVideo = document.getElementById('flower-video'); // Mengambil data video
+        const flowerVideo = document.getElementById('flower-video');
         let isMusicPlaying = false;
 
-        // Memulai MP3
         function startMusic() {
             if (!isMusicPlaying) {
                 bgMusic.play().then(() => {
@@ -347,7 +346,6 @@
         }
         document.addEventListener('click', startMusic);
 
-        // Tombol Toggle Musik
         musicToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             if (bgMusic.paused) {
@@ -361,21 +359,19 @@
             }
         });
 
-        // KETIKA VIDEO DIPUTAR -> MATIKAN MP3
         flowerVideo.addEventListener('play', () => {
             bgMusic.pause();
             musicToggle.innerText = "🔇";
             isMusicPlaying = false;
         });
 
-        // KETIKA VIDEO DI-PAUSE -> NYALAKAN LAGI MP3
         flowerVideo.addEventListener('pause', () => {
             bgMusic.play();
             musicToggle.innerText = "🔊";
             isMusicPlaying = true;
         });
 
-        // --- LOGIKA LOCK SCREEN & CLUE ---
+        // --- LOGIKA LOCK SCREEN ---
         let currentPin = "";
         const targetPin = "20204"; 
         const maxPinLength = targetPin.length;
@@ -439,19 +435,15 @@
         document.getElementById('choose-flower').addEventListener('click', () => {
             choiceScreen.style.display = "none"; 
             flowerScreen.style.display = "flex";
-            flowerVideo.play(); // Putar video otomatis saat menu bunga dibuka
+            flowerVideo.play();
         });
 
         function backToChoice(screenId) {
             document.getElementById(screenId).style.display = "none";
             choiceScreen.style.display = "flex";
             
-            if(screenId === 'envelope-screen') {
-                document.getElementById('envelope').classList.remove('open');
-            }
-            if(screenId === 'flower-screen') {
-                flowerVideo.pause(); // Matikan video secara otomatis saat keluar (akan menyalakan mp3 lagi)
-            }
+            if(screenId === 'envelope-screen') document.getElementById('envelope').classList.remove('open');
+            if(screenId === 'flower-screen') flowerVideo.pause();
         }
 
         const envelope = document.getElementById('envelope');
