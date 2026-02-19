@@ -80,7 +80,7 @@
         /* ========================================= */
         #choice-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #d11a2a; z-index: 998; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: 1; transition: opacity 0.5s ease; }
         .choice-title { font-family: 'Great Vibes', cursive; color: white; font-size: 3.5rem; margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
-        .choices-container { display: flex; gap: 40px; justify-content: center; align-items: center; }
+        .choices-container { display: flex; gap: 40px; justify-content: center; align-items: center; margin-bottom: 40px; }
         .choice-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .choice-glow { width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%); display: flex; justify-content: center; align-items: center; transition: transform 0.3s ease, background 0.3s ease; }
         .choice-item:hover .choice-glow { transform: scale(1.15); background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%); }
@@ -93,9 +93,9 @@
         .flower-icon { font-size: 3.5rem; text-shadow: 0 5px 10px rgba(0,0,0,0.2); }
 
         /* ========================================= */
-        /* --- WADAH LAYAR AMPLOP & BUNGA --- */
+        /* --- WADAH LAYAR AMPLOP, BUNGA & PENUTUP --- */
         /* ========================================= */
-        #envelope-screen, #flower-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; background-color: #d11a2a; z-index: 997; animation: fadeIn 0.6s ease; }
+        #envelope-screen, #flower-screen, #closing-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; background-color: #d11a2a; z-index: 997; animation: fadeIn 0.6s ease; text-align: center;}
 
         /* --- KODE AMPLOP ASLI --- */
         h1 { font-family: 'Great Vibes', cursive; color: white; font-size: 3.5rem; margin-bottom: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 2px; }
@@ -142,7 +142,7 @@
         .letter-content p { color: #333; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
 
         /* Gaya Foto (Desktop) */
-        .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;}
+        .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s; }
         .letter-modal.active .floating-photo { opacity: 1; }
         .photo-1 { top: 10%; left: 5%; width: 250px; transform: rotate(-15deg) scale(0.8); }
         .letter-modal.active .photo-1 { transform: rotate(-15deg) scale(1); }
@@ -154,6 +154,11 @@
         .letter-modal.active .photo-4 { transform: rotate(12deg) scale(1); }
         .photo-5 { top: 45%; left: 2%; width: 170px; transform: rotate(-5deg) scale(0.8); }
         .letter-modal.active .photo-5 { transform: rotate(-5deg) scale(1); }
+
+        /* --- GAYA LAYAR PENUTUP --- */
+        .closing-title { font-family: 'Great Vibes', cursive; color: white; font-size: 4.5rem; margin-bottom: 10px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+        .closing-text { color: white; font-family: 'Poppins', sans-serif; font-size: 1.2rem; line-height: 1.6; padding: 0 20px; margin-bottom: 30px; font-weight: 400;}
+        .closing-gif { width: 160px; border-radius: 15px; margin-top: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
         /* KEYFRAMES */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -167,7 +172,6 @@
         @media (max-width: 768px) { 
             .letter-modal { align-items: flex-start; padding-top: 3vh; }
             
-            /* SURAT: Dikunci tingginya maksimal 45% layar */
             .letter-content { 
                 width: 90% !important; 
                 height: 45vh !important; max-height: 45vh !important;
@@ -179,14 +183,14 @@
             .letter-content p { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; text-align: left; }
             .close-btn { top: 5px; right: 15px; font-size: 1.8rem; }
 
-            /* FOTO-FOTO: DIPERBESAR LAGI */
-            .photo-1 { width: 130px; top: 60%; left: 2%; transform: rotate(-10deg); } 
-            .photo-2 { width: 135px; top: 62%; right: 2%; transform: rotate(12deg); } 
-            .photo-3 { width: 125px; top: 80%; left: 4%; transform: rotate(-6deg); } 
-            .photo-4 { width: 130px; top: 78%; right: 4%; transform: rotate(8deg); } 
-            .photo-5 { width: 145px; top: 68%; left: 50%; margin-left: -72px; transform: rotate(-2deg); } 
+            .photo-1 { width: 110px; top: 60%; left: 3%; transform: rotate(-10deg); } 
+            .photo-2 { width: 115px; top: 62%; right: 3%; transform: rotate(12deg); } 
+            .photo-3 { width: 105px; top: 82%; left: 5%; transform: rotate(-6deg); } 
+            .photo-4 { width: 110px; top: 80%; right: 5%; transform: rotate(8deg); } 
+            .photo-5 { width: 120px; top: 70%; left: 50%; margin-left: -60px; transform: rotate(-2deg); } 
 
-            .choice-title { font-size: 3rem; } .choices-container { gap: 20px; } .choice-glow { width: 110px; height: 110px; }
+            .choice-title { font-size: 3rem; } .choices-container { gap: 20px; margin-bottom: 20px; } .choice-glow { width: 110px; height: 110px; }
+            .closing-title { font-size: 3.5rem; } .closing-text { font-size: 1rem; }
         }
 
         /* Khusus Layar HP Sangat Kecil */
@@ -195,8 +199,7 @@
             .transition-img { width: 150px; height: 150px; } .transition-text { font-size: 0.95rem; }
             
             .letter-content { height: 45vh !important; max-height: 45vh !important; }
-            /* Foto di HP kecil juga ikut diperbesar */
-            .photo-1 { width: 110px; } .photo-2 { width: 115px; } .photo-3 { width: 105px; } .photo-4 { width: 110px; } .photo-5 { width: 120px; margin-left: -60px;}
+            .photo-1 { width: 95px; } .photo-2 { width: 100px; } .photo-3 { width: 90px; } .photo-4 { width: 95px; } .photo-5 { width: 105px; margin-left: -52px;}
         }
     </style>
 </head>
@@ -269,6 +272,8 @@
                 <div class="choice-label">Flower</div>
             </div>
         </div>
+
+        <button class="outline-btn" id="btn-to-closing" style="font-size: 1rem; padding: 10px 30px; margin-top: 15px;">Lanjut ➔</button>
     </div>
 
     <div id="envelope-screen">
@@ -305,6 +310,18 @@
                 Buket spesial buat kesayanganku🌸
             </p>
         </div>
+    </div>
+
+    <div id="closing-screen">
+        <button class="outline-btn back-btn" onclick="backToChoice('closing-screen')">Kembali</button>
+        
+        <h2 class="closing-title">That's All!</h2>
+        <p class="closing-text">
+            Sekali lagi, selamat ulang tahun sayangnya akuu. <br>
+            I love you today, tomorrow, and forever 🤍
+        </p>
+        
+        <img src="https://media.tenor.com/PZtX11D_9rIAAAAi/bubu-dudu-kisses.gif" alt="Closing Hug" class="closing-gif">
     </div>
 
     <div class="letter-modal" id="letter-modal">
@@ -380,6 +397,7 @@
         const choiceScreen = document.getElementById('choice-screen');
         const envelopeScreen = document.getElementById('envelope-screen');
         const flowerScreen = document.getElementById('flower-screen');
+        const closingScreen = document.getElementById('closing-screen');
         
         const pinDotsContainer = document.getElementById('pin-dots');
         const pinView = document.getElementById('pin-view');
@@ -387,6 +405,7 @@
         const btnShowClue = document.getElementById('btn-show-clue');
         const btnHideClue = document.getElementById('btn-hide-clue');
         const btnContinue = document.getElementById('btn-continue');
+        const btnToClosing = document.getElementById('btn-to-closing');
 
         btnShowClue.addEventListener('click', () => { pinView.style.display = 'none'; clueView.style.display = 'flex'; });
         btnHideClue.addEventListener('click', () => { clueView.style.display = 'none'; pinView.style.display = 'flex'; });
@@ -426,6 +445,7 @@
             setTimeout(() => { transitionScreen.style.display = "none"; }, 600);
         });
 
+        // --- MENU PILIHAN ---
         document.getElementById('choose-envelope').addEventListener('click', () => {
             choiceScreen.style.display = "none"; envelopeScreen.style.display = "flex";
         });
@@ -436,6 +456,13 @@
             flowerVideo.play();
         });
 
+        // Tombol Lanjut (Ke Layar Penutup)
+        btnToClosing.addEventListener('click', () => {
+            choiceScreen.style.display = "none"; 
+            closingScreen.style.display = "flex";
+        });
+
+        // Tombol Kembali
         function backToChoice(screenId) {
             document.getElementById(screenId).style.display = "none";
             choiceScreen.style.display = "flex";
@@ -444,6 +471,7 @@
             if(screenId === 'flower-screen') flowerVideo.pause();
         }
 
+        // --- AMPLOP & SURAT ---
         const envelope = document.getElementById('envelope');
         const letterModal = document.getElementById('letter-modal');
         const closeBtn = document.getElementById('close-btn');
