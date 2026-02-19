@@ -26,8 +26,10 @@
         }
         .outline-btn:hover { background: #ffffff; color: #d11a2a; }
 
+        /* Tombol Kembali di pojok kiri atas layar Amplop/Bunga */
         .back-btn { position: absolute; top: 20px; left: 20px; font-size: 0.85rem; padding: 6px 15px; z-index: 50; }
         
+        /* Tombol Musik di Pojok Kanan Atas */
         #music-toggle {
             position: fixed; top: 20px; right: 20px;
             background: rgba(255,255,255,0.2); border: 2px solid #fff; color: white;
@@ -127,7 +129,14 @@
         /* --- MODAL SURAT BESAR & 5 FOTO --- */
         .letter-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
         .letter-modal.active { opacity: 1; pointer-events: all; }
-        .letter-content { background: #fff; width: 90%; max-width: 600px; max-height: 85vh; border-radius: 10px; padding: 40px; position: relative; transform: scale(0.7) translateY(100px); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; z-index: 2002; }
+        
+        /* Default/Desktop Ukuran Surat */
+        .letter-content { 
+            background: #fff; width: 90%; max-width: 600px; max-height: 85vh; 
+            border-radius: 10px; padding: 40px; position: relative; 
+            transform: scale(0.7) translateY(100px); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; z-index: 2002; 
+        }
         .letter-modal.active .letter-content { transform: scale(1) translateY(0); }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #ccc; cursor: pointer; line-height: 1; transition: color 0.3s; }
         .close-btn:hover { color: #d11a2a; }
@@ -156,37 +165,37 @@
         @keyframes sway { 0%, 100% { transform: rotate(-1.5deg) translateY(0); } 50% { transform: rotate(1.5deg) translateY(-5px); } }
 
         /* ========================================================= */
-        /* RESPONSIVE DI HP - PERBAIKAN UKURAN KERTAS & POSISI FOTO  */
+        /* RESPONSIVE DI HP - PERBAIKAN UKURAN KERTAS 40% & FOTO */
         /* ========================================================= */
         @media (max-width: 768px) { 
-            /* 1. Mengecilkan lebar kertas dan font agar ada ruang untuk foto */
+            /* 1. Kertas Surat Diperkecil Maksimal (40%) */
             .letter-content { 
-                width: 78%; /* Lebih ramping */
-                padding: 25px 20px; /* Jarak teks ke pinggir dikurangi */
+                width: 40% !important; /* Lebar dikecilkan ekstrem sesuai permintaan */
+                padding: 15px 12px; /* Padding dikurangi agar teks punya ruang */
                 max-height: 80vh; 
             }
-            .letter-content h2 { font-size: 2.2rem; margin-bottom: 10px; }
-            .letter-content p { font-size: 0.9rem; margin-bottom: 12px; line-height: 1.5; }
-            .close-btn { top: 10px; right: 15px; font-size: 1.5rem; }
+            .letter-content h2 { font-size: 1.5rem; margin-bottom: 8px; }
+            .letter-content p { font-size: 0.65rem; margin-bottom: 10px; line-height: 1.4; } /* Teks ikut dikecilkan agar muat di 40% */
+            .close-btn { top: 5px; right: 10px; font-size: 1.2rem; }
 
-            /* 2. Menata ulang ke-5 foto agar tersebar mengelilingi kertas */
-            .photo-1 { width: 80px; top: 8%; left: 2%; transform: rotate(-15deg); } 
-            .photo-2 { width: 85px; bottom: 8%; right: 2%; transform: rotate(10deg); } 
-            .photo-3 { width: 75px; bottom: 22%; left: 1%; transform: rotate(-8deg); } 
-            .photo-4 { width: 80px; top: 22%; right: 1%; transform: rotate(12deg); } 
-            /* Memindahkan photo-5 ke sebelah kanan tengah untuk keseimbangan layout */
-            .photo-5 { width: 70px; top: 45%; right: 2%; left: auto; transform: rotate(-5deg); } 
+            /* 2. Menata ulang ke-5 foto di ruang kosong (karena suratnya kecil banget) */
+            .photo-1 { width: 95px; top: 15%; left: 5%; transform: rotate(-15deg); } 
+            .photo-2 { width: 100px; bottom: 15%; right: 5%; transform: rotate(10deg); } 
+            .photo-3 { width: 90px; bottom: 25%; left: 3%; transform: rotate(-8deg); } 
+            .photo-4 { width: 95px; top: 25%; right: 3%; transform: rotate(12deg); } 
+            .photo-5 { width: 85px; top: 50%; right: 8%; left: auto; transform: rotate(-5deg); } 
 
             .choice-title { font-size: 3rem; } .choices-container { gap: 20px; } .choice-glow { width: 110px; height: 110px; }
         }
 
+        /* Khusus HP dengan layar sangat kecil (seperti iPhone SE) */
         @media (max-width: 360px) {
             .num-btn { width: 45px; height: 45px; font-size: 1.1rem; } .numpad { gap: 8px; } .lock-title { font-size: 0.75rem; }
             .transition-img { width: 150px; height: 150px; } .transition-text { font-size: 0.95rem; }
             
-            /* Penyesuaian ekstra untuk HP yang layarnya sangat kecil */
-            .letter-content { width: 85%; padding: 20px 15px; }
-            .photo-1 { width: 65px; } .photo-2 { width: 70px; } .photo-3 { width: 60px; } .photo-4 { width: 65px; } .photo-5 { width: 60px; }
+            /* Tetap pertahankan 40% tapi kurangi foto sedikit ukurannya */
+            .letter-content { width: 45% !important; padding: 12px 8px; }
+            .photo-1 { width: 75px; } .photo-2 { width: 80px; } .photo-3 { width: 70px; } .photo-4 { width: 75px; } .photo-5 { width: 65px; }
         }
     </style>
 </head>
