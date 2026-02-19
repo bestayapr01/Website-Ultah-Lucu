@@ -142,7 +142,7 @@
         .letter-content p { color: #333; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
 
         /* Gaya Foto (Desktop) */
-        .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s; }
+        .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;}
         .letter-modal.active .floating-photo { opacity: 1; }
         .photo-1 { top: 10%; left: 5%; width: 250px; transform: rotate(-15deg) scale(0.8); }
         .letter-modal.active .photo-1 { transform: rotate(-15deg) scale(1); }
@@ -179,13 +179,12 @@
             .letter-content p { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; text-align: left; }
             .close-btn { top: 5px; right: 15px; font-size: 1.8rem; }
 
-            /* FOTO-FOTO: DIPERBESAR & DITURUNKAN POISISINYA */
-            /* Top > 60% agar lebih turun, width ditambah 15-20px agar lebih besar */
-            .photo-1 { width: 150px; top: 60%; left: 3%; transform: rotate(-10deg); } 
-            .photo-2 { width: 135px; top: 62%; right: 3%; transform: rotate(12deg); } 
-            .photo-3 { width: 125px; top: 82%; left: 5%; transform: rotate(-6deg); } 
-            .photo-4 { width: 130px; top: 80%; right: 5%; transform: rotate(8deg); } 
-            .photo-5 { width: 120px; top: 70%; left: 50%; margin-left: -60px; transform: rotate(-2deg); } 
+            /* FOTO-FOTO: DIPERBESAR LAGI */
+            .photo-1 { width: 130px; top: 60%; left: 2%; transform: rotate(-10deg); } 
+            .photo-2 { width: 135px; top: 62%; right: 2%; transform: rotate(12deg); } 
+            .photo-3 { width: 125px; top: 80%; left: 4%; transform: rotate(-6deg); } 
+            .photo-4 { width: 130px; top: 78%; right: 4%; transform: rotate(8deg); } 
+            .photo-5 { width: 145px; top: 68%; left: 50%; margin-left: -72px; transform: rotate(-2deg); } 
 
             .choice-title { font-size: 3rem; } .choices-container { gap: 20px; } .choice-glow { width: 110px; height: 110px; }
         }
@@ -196,8 +195,8 @@
             .transition-img { width: 150px; height: 150px; } .transition-text { font-size: 0.95rem; }
             
             .letter-content { height: 45vh !important; max-height: 45vh !important; }
-            /* Foto di HP kecil juga ikut diperbesar sedikit */
-            .photo-1 { width: 95px; } .photo-2 { width: 100px; } .photo-3 { width: 90px; } .photo-4 { width: 95px; } .photo-5 { width: 105px; margin-left: -52px;}
+            /* Foto di HP kecil juga ikut diperbesar */
+            .photo-1 { width: 110px; } .photo-2 { width: 115px; } .photo-3 { width: 105px; } .photo-4 { width: 110px; } .photo-5 { width: 120px; margin-left: -60px;}
         }
     </style>
 </head>
@@ -468,5 +467,3 @@
     </script>
 </body>
 </html>
-
-
