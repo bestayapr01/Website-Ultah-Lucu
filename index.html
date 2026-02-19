@@ -128,7 +128,7 @@
         .letter-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
         .letter-modal.active { opacity: 1; pointer-events: all; }
         
-        /* Setingan Surat untuk Laptop/Desktop (Default) */
+        /* Setingan Surat untuk Desktop */
         .letter-content { 
             background: #fff; width: 90%; max-width: 600px; max-height: 85vh; 
             border-radius: 10px; padding: 40px; position: relative; 
@@ -141,7 +141,7 @@
         .letter-content h2 { font-family: 'Great Vibes', cursive; color: #d11a2a; font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; }
         .letter-content p { color: #333; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
 
-        /* Gaya untuk 5 Foto Melayang (Laptop/Desktop) */
+        /* Gaya Foto (Desktop) */
         .floating-photo { position: absolute; opacity: 0; z-index: 2001; transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s; border: 5px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .letter-modal.active .floating-photo { opacity: 1; }
         .photo-1 { top: 10%; left: 5%; width: 250px; transform: rotate(-15deg) scale(0.8); }
@@ -155,50 +155,51 @@
         .photo-5 { top: 45%; left: 2%; width: 170px; transform: rotate(-5deg) scale(0.8); }
         .letter-modal.active .photo-5 { transform: rotate(-5deg) scale(1); }
 
-        /* KEYFRAMES ANIMASI */
+        /* KEYFRAMES */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
         @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-8px, 0, 0); } 40%, 60% { transform: translate3d(8px, 0, 0); } }
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
         @keyframes sway { 0%, 100% { transform: rotate(-1.5deg) translateY(0); } 50% { transform: rotate(1.5deg) translateY(-5px); } }
 
         /* ========================================================= */
-        /* RESPONSIVE DI HP (SURAT SETENGAH ATAS, FOTO SETENGAH BAWAH) */
+        /* RESPONSIVE DI HP: SETENGAH ATAS SURAT, SETENGAH BAWAH FOTO*/
         /* ========================================================= */
         @media (max-width: 768px) { 
-            /* Ubah layout container modal agar surat berada di atas */
-            .letter-modal { align-items: flex-start; padding-top: 5vh; }
+            /* Ubah struktur modal agar menempel di atas */
+            .letter-modal { align-items: flex-start; padding-top: 3vh; }
             
-            /* Surat hanya ambil setengah layar atas (45% layar) */
+            /* SURAT: Dikunci tingginya maksimal 45% layar */
             .letter-content { 
-                width: 90% !important; /* Dibuat 90% agar tulisan tetap lebar dan muat */
-                max-height: 45vh !important; /* Dibatasi tegas tingginya hanya setengah layar atas */
-                padding: 20px 15px; 
-                transform: scale(0.7) translateY(-50px);
+                width: 90% !important; 
+                height: 45vh !important; /* Tinggi fix setengah layar */
+                max-height: 45vh !important;
+                padding: 15px; 
+                overflow-y: auto; /* Bisa di-scroll di dalam kotaknya */
+                transform: translateY(-50px) scale(0.9); /* Reset animasi */
             }
-            .letter-modal.active .letter-content { transform: scale(1) translateY(0); }
+            .letter-modal.active .letter-content { transform: translateY(0) scale(1); }
             
             .letter-content h2 { font-size: 2rem; margin-bottom: 5px; }
-            .letter-content p { font-size: 0.8rem; margin-bottom: 10px; line-height: 1.5; }
-            .close-btn { top: 5px; right: 10px; font-size: 1.5rem; }
+            .letter-content p { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; text-align: left; }
+            .close-btn { top: 5px; right: 15px; font-size: 1.8rem; }
 
-            /* FOTO-FOTO DITUMPUK DI SETENGAH LAYAR BAWAH (top di atas 50%) */
-            .photo-1 { width: 100px; top: 53%; left: 5%; transform: rotate(-12deg); } 
-            .photo-2 { width: 110px; top: 55%; right: 5%; transform: rotate(15deg); } 
-            .photo-3 { width: 95px; top: 75%; left: 8%; transform: rotate(-8deg); } 
-            .photo-4 { width: 105px; top: 72%; right: 8%; transform: rotate(10deg); } 
-            .photo-5 { width: 85px; top: 65%; left: 38%; transform: rotate(-2deg); } /* Di tengah bawah */
+            /* FOTO-FOTO: Dikunci posisinya di setengah layar bawah (top > 50%) */
+            .photo-1 { width: 90px; top: 52%; left: 3%; transform: rotate(-10deg); } 
+            .photo-2 { width: 95px; top: 54%; right: 3%; transform: rotate(12deg); } 
+            .photo-3 { width: 85px; top: 74%; left: 6%; transform: rotate(-6deg); } 
+            .photo-4 { width: 90px; top: 72%; right: 6%; transform: rotate(8deg); } 
+            .photo-5 { width: 100px; top: 64%; left: 35%; transform: rotate(-2deg); } /* Posisinya di tengah bawah */
 
             .choice-title { font-size: 3rem; } .choices-container { gap: 20px; } .choice-glow { width: 110px; height: 110px; }
         }
 
-        /* Khusus HP sangat kecil */
+        /* Khusus Layar HP Sangat Kecil */
         @media (max-width: 360px) {
             .num-btn { width: 45px; height: 45px; font-size: 1.1rem; } .numpad { gap: 8px; } .lock-title { font-size: 0.75rem; }
             .transition-img { width: 150px; height: 150px; } .transition-text { font-size: 0.95rem; }
             
-            .letter-content { max-height: 48vh !important; }
-            .photo-1 { width: 85px; } .photo-2 { width: 90px; } .photo-3 { width: 80px; } .photo-4 { width: 85px; } .photo-5 { width: 75px; }
+            .letter-content { height: 45vh !important; max-height: 45vh !important; }
+            .photo-1 { width: 80px; } .photo-2 { width: 85px; } .photo-3 { width: 75px; } .photo-4 { width: 80px; } .photo-5 { width: 90px; }
         }
     </style>
 </head>
@@ -274,7 +275,7 @@
     </div>
 
     <div id="envelope-screen">
-        <button class="outline-btn back-btn" onclick="backToChoice('envelope-screen')">🔙 Pilihan</button>
+        <button class="outline-btn back-btn" onclick="backToChoice('envelope-screen')">Kembali</button>
         
         <h1>Press the Envelope</h1>
         <div class="container">
@@ -298,7 +299,7 @@
     </div>
 
     <div id="flower-screen">
-        <button class="outline-btn back-btn" onclick="backToChoice('flower-screen')">🔙 Pilihan</button>
+        <button class="outline-btn back-btn" onclick="backToChoice('flower-screen')">Kembali</button>
         
         <h1>For You</h1>
         <div style="text-align: center;">
